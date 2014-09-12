@@ -10,9 +10,9 @@
 	"keywords": [
 		"jquery",
 		"plugin",
-		"boilerplate",
+		"validate",
 		"jquery-plugin",
-		"jquery-boilerplate"
+		"forms"
 	],
 	"license": "MIT"
 }
