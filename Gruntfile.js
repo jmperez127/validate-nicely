@@ -56,6 +56,12 @@ module.exports = function(grunt) {
 			}
 		},
 
+        karma: {
+            unit: {
+                configFile: 'test/karma.conf.js'
+            }
+        },
+
 		// watch for changes to source
 		// Better than calling grunt a million times
 		// (call 'grunt watch')
@@ -71,8 +77,10 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks("grunt-contrib-uglify");
 	grunt.loadNpmTasks("grunt-contrib-coffee");
 	grunt.loadNpmTasks("grunt-contrib-watch");
+    grunt.loadNpmTasks('grunt-karma');
 
 	grunt.registerTask("default", ["jshint", "concat", "uglify"]);
+	grunt.registerTask("test", ["karma"]);
 	grunt.registerTask("travis", ["jshint"]);
 
 };
