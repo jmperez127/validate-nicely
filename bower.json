@@ -1,12 +1,12 @@
 {
-	"name": "jquery-boilerplate",
-	"version": "3.3.4",
-	"homepage": "http://jqueryboilerplate.com",
+	"name": "jquery-validate-nicely",
+	"version": "0.1.0",
+	"homepage": "http://none",
 	"authors": [
-		"Zeno Rocha <hi@zenorocha.com>"
+		"Jean Perez <contacto@jeanperez.com>"
 	],
-	"description": "A jump-start for jQuery plugins development.",
-	"main": "src/jquery.boilerplate.js",
+	"description": "Yet another simple jQuery form validator plugin.",
+	"main": "src/jquery.validate-nicely.js",
 	"keywords": [
 		"jquery",
 		"plugin",
