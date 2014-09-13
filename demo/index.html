@@ -1,16 +1,28 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>jQuery Boilerplate</title>
+		<title>Validate Nicely</title>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 		<script src="../src/jquery.validate-nicely.js"></script>
+        <style>
+            .error{
+                background-color: #cd5c5c;
+            }
+        </style>
 	</head>
 	<body>
-        <!--TODO create demo-->
+        <form action="process/send.html" class="form">
+            <input data-required="true" placeholder="enter some text here" data-message="This field is required" />
+            <input data-required="true" placeholder="enter some text here" data-message="This field is required" />
+            <textarea data-required="true" placeholder="enter some text here" data-message="This field is required" ></textarea>
+            <input data-email placeholder="test@test.com" data-email-message="Email invalid" />
+            <input type="submit" data-submit value="send"/>
+            <a href="submit" data-submit>Send</a>
+        </form>
 
 		<script>
 			$(function() {
-
+                $("form").validateNicely();
 			});
 		</script>
 	</body>
