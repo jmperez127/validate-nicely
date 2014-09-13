@@ -1,6 +1,4 @@
-;
-(function ($, window, document, undefined) {
-
+;(function ($, window, document, undefined) {
 
     // Create the defaults once
     var validateNicely = "validateNicely",
@@ -33,18 +31,20 @@
         },
         disableSubmitButtons: function () {
             this.submitButtons.bind("click", bindSubmitClick);
-            function bindSubmitClick() { return false; }
+            function bindSubmitClick() {
+                return false;
+            }
         },
         addRemoveErrorsOnRequiredElements: function () {
             this.requiredFields.bind("blur", addOrRemoveErrorClass);
-            var  errorClass = this.settings.errorClass;
+            var errorClass = this.settings.errorClass;
 
             function addOrRemoveErrorClass(e) {
                 var element = $(e.target);
                 if (Plugin.prototype.utils.isEmpty(element))
-                    element.addClass( errorClass);
+                    element.addClass(errorClass);
                 else
-                    element.removeClass( errorClass);
+                    element.removeClass(errorClass);
             }
         }
     });
@@ -55,18 +55,18 @@
         this.each(function () {
             if (!$.data(this, "plugin_" + validateNicely)) {
                 if (!$.data(this, "original_form")) {
-                    originalHtmlForm = $('<div />').append($(this).eq(0).clone()).html();
-                    $.data(this, "original_html_form", originalHtmlForm );
+                    originalHtmlForm = $("<div />").append($(this).eq(0).clone()).html();
+                    $.data(this, "original_html_form", originalHtmlForm);
                 }
                 $.data(this, "plugin_" + validateNicely, new Plugin(this, options));
             }
         });
 
-        this.destroy = function(){
+        this.destroy = function () {
             this.each(function () {
-                $(this).replaceWith( $.data(this, "original_html_form") );
+                $(this).replaceWith($.data(this, "original_html_form"));
             });
-        }
+        };
 
         return this;
     };
