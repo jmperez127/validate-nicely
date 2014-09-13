@@ -59,15 +59,21 @@ The basic structure of the project is given in the following way:
 │   └── jquery.validate-nicely.min.js
 ├── src/
 │   └── jquery.validate-nicely.js
-├── test/
-│   ├── jquery.validate-nicely.js
-│   └── karma.conf.js
+├── spec/
+│	├── fixtures/
+│	│	└── form.html
+│	├── karma-dependencies/
+│	│	├── jasmine-jquery.js
+│	│	└── jquery-2.1.1.min.js
+│   └── jquery.validate-nicely.js
+│    
 ├── .editorconfig
 ├── .gitignore
 ├── .jshintrc
 ├── .travis.yml
 ├── boilerplate.jquery.json
 ├── Gruntfile.js
+├── karma.conf.js
 └── package.json
 ```
 
@@ -84,9 +90,18 @@ This is where the generated files are stored once Grunt runs.
 Contains the files responsible for the plugin
 
 
-#### [test/](https://[REPO]/tree/master/test)
+#### [spec/](https://[REPO]/tree/master/spec)
 
-Contains jasmine testing files and karma config file.
+Contains jasmine spec files, fixtures and karma dependencies.
+
+
+#### [fixtures/](https://[REPO]/tree/master/spec/fixture)
+
+Fixtures for DOM testing with jasmine and jQuery
+
+#### [karma-dependencies/](https://[REPO]/tree/master/spec/karma-dependencies)
+
+Additional lib files used by karma such as jQuery and jasmine-jquery
 
 #### [.editorconfig](https://[REPO]/tree/master/.editorconfig)
 
