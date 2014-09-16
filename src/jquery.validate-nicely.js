@@ -8,9 +8,9 @@
 
     // The actual plugin constructor
     function Plugin(element, options) {
-        this.element = element;
-        this.submitButtons = $($(this.element).find("*[data-submit]"));
-        this.requiredFields = $($(this.element).find("*[data-required]"));
+        this.form = element;
+        this.submitButtons = "*[data-submit]";
+        this.requiredFields = "*[data-required]";
         this.settings = $.extend({}, defaults, options);
         this._defaults = defaults;
         this._name = validateNicely;
@@ -27,16 +27,18 @@
         init: function () {
             this.disableSubmitButtons();
             this.addRemoveErrorsOnRequiredElements();
-
+            // TODO send if not errors are found
         },
         disableSubmitButtons: function () {
-            this.submitButtons.bind("click", bindSubmitClick);
+            var form = this.form, required = this.requiredFields;
+            $(form).on("click", this.submitButtons, bindSubmitClick);
             function bindSubmitClick() {
+                $(form).find(required).trigger("blur");
                 return false;
             }
         },
         addRemoveErrorsOnRequiredElements: function () {
-            this.requiredFields.bind("blur", addOrRemoveErrorClass);
+            $(this.form).on("blur keyup", this.requiredFields, addOrRemoveErrorClass);
             var errorClass = this.settings.errorClass;
 
             function addOrRemoveErrorClass(e) {

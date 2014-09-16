@@ -2,7 +2,7 @@
 
 ### Yet another simple jQuery form validator plugin
 
-So you need to integrate quickly a contact form, but native validation is ugly. You don't want to use some complex programming logic to do such a simple task. Then this plugin might be the right for you. 
+So you need to integrate quickly a contact form, but native validation is ugly. You don't want to use some complex programming logic to do such a simple task. Then this plugin might be the right for you.
 
 ## Usage
 
@@ -66,7 +66,7 @@ The basic structure of the project is given in the following way:
 │	│	├── jasmine-jquery.js
 │	│	└── jquery-2.1.1.min.js
 │   └── jquery.validate-nicely.js
-│    
+│
 ├── .editorconfig
 ├── .gitignore
 ├── .jshintrc

@@ -20,6 +20,15 @@
             <a href="submit" data-submit>Send</a>
         </form>
 
+
+        <form action="process/send.html" class="form">
+            <input data-required="true" placeholder="enter some text here" data-message="This field is required" />
+            <input data-required="true" placeholder="enter some text here" data-message="This field is required" />
+            <textarea data-required="true" placeholder="enter some text here" data-message="This field is required" ></textarea>
+            <input data-email placeholder="test@test.com" data-email-message="Email invalid" />
+            <input type="submit" data-submit value="send"/>
+            <a href="submit" data-submit>Send</a>
+        </form>
 		<script>
 			$(function() {
                 $("form").validateNicely();

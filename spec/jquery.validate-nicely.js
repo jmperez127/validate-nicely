@@ -24,7 +24,7 @@ describe("The plugin", function () {
     it('can be resetted', function(){
         $("#my-form").validateNicely().destroy();
         triggerInputError();
-        expect($("*[data-required]")).not.toHaveClass("error");
+        expect($("#my-form *[data-required]")).not.toHaveClass("error");
 
         $("#my-form").validateNicely();
         triggerInputError();
@@ -37,7 +37,18 @@ describe("The plugin", function () {
 
         triggerInputError();
         expect($("*[data-required]")).toHaveClass("customError");
-    })
+    });
+
+    it('set errors on submit when input fields have errors', function(){
+        $("*[data-submit]").trigger("click");
+        expect($(".error").length).toBeGreaterThan(0);
+    });
+
+    it('validates forms separately', function(){
+        $("#my-form *[data-submit]").trigger("click");
+        expect($("#my-form *[data-required]:first")).toHaveClass("error");
+        expect($("#my-form-2 *[data-required]:first")).not.toHaveClass("error");
+    });
 
     function triggerInputError() {
         $("*[data-required]").val("   ");
