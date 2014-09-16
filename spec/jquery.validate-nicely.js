@@ -50,6 +50,18 @@ describe("The plugin", function () {
         expect($("#my-form-2 *[data-required]:first")).not.toHaveClass("error");
     });
 
+    it('sends the form via ajax', function(){
+
+        spyOn($, "post").and.callThrough();
+        triggerInputError();
+        $("#my-form *[data-submit]").trigger("click");
+        expect($.post).not.toHaveBeenCalled();
+        triggerInputSuccess();
+        $("#my-form *[data-submit]").trigger("click");
+        expect($.post).toHaveBeenCalled();
+        expect($.post.calls.mostRecent().args[0]).toEqual($("#my-form").attr("action"));
+    })
+
     function triggerInputError() {
         $("*[data-required]").val("   ");
         $("*[data-required]").trigger("click");

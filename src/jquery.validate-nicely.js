@@ -30,10 +30,12 @@
             // TODO send if not errors are found
         },
         disableSubmitButtons: function () {
-            var form = this.form, required = this.requiredFields;
+            var form = this.form, required = this.requiredFields, that = this;
             $(form).on("click", this.submitButtons, bindSubmitClick);
+
             function bindSubmitClick() {
                 $(form).find(required).trigger("blur");
+                that.sendForm();
                 return false;
             }
         },
@@ -47,6 +49,13 @@
                     element.addClass(errorClass);
                 else
                     element.removeClass(errorClass);
+            }
+        },
+        sendForm: function(){
+            var errorClass = "."+this.settings.errorClass;
+            if($(this.form).find(errorClass).length === 0){
+                url = $(this.form).attr("action");
+                $.post(url, {}, function(){});
             }
         }
     });
