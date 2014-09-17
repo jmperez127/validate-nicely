@@ -1,9 +1,16 @@
-;(function ($, window, document, undefined) {
+;
+(function ($, window, document, undefined) {
 
     // Create the defaults once
     var validateNicely = "validateNicely",
         defaults = {
-            errorClass: "error"
+            errorClass: "error",
+            errorMessages: {
+                required: "This field is required",
+                email: "The email is not valid",
+                numeric: "Wrong numeric format"
+            },
+            validationType: "inline" //inline, label, alert
         };
 
     // The actual plugin constructor
@@ -51,11 +58,12 @@
                     element.removeClass(errorClass);
             }
         },
-        sendForm: function(){
-            var errorClass = "."+this.settings.errorClass;
-            if($(this.form).find(errorClass).length === 0){
+        sendForm: function () {
+            var errorClass = "." + this.settings.errorClass;
+            if ($(this.form).find(errorClass).length === 0) {
                 url = $(this.form).attr("action");
-                $.post(url, {}, function(){});
+                $.post(url, {}, function () {
+                });
             }
         }
     });
