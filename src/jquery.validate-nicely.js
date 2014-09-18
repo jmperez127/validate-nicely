@@ -1,5 +1,4 @@
-;
-(function ($, window, document, undefined) {
+;(function ($, window, document, undefined) {
 
     // Create the defaults once
     var validateNicely = "validateNicely",
@@ -13,6 +12,36 @@
             validationType: "inline" //inline, label, alert
         };
 
+    function Validator(plugin) {
+
+        var pluginObj = plugin, defaultErrors = plugin.settings.errorMessages,
+                        errorClass = plugin.settings.errorClass;
+
+        return {
+            validateEmpty: function (input) {
+                var requiredErrorMessage = this.assignErrorMessages("required", input);
+
+                if (pluginObj.utils.isEmpty(input)) {
+                    input.addClass(errorClass);
+                    if (pluginObj.settings.validationType === "inline") {
+                        input.val(requiredErrorMessage);
+                    }
+                }
+                else {
+                    if (pluginObj.settings.validationType === "inline") {
+                        if (input.val() !== requiredErrorMessage)
+                            input.removeClass(errorClass);
+                    }
+                }
+            },
+
+            assignErrorMessages: function(error, input){
+                var inputErrorMsgAttr = input.attr("data-"+error+"-message");
+                return typeof(inputErrorMsgAttr) !== "undefined" ? inputErrorMsgAttr : defaultErrors.required;
+            }
+        };
+    }
+
     // The actual plugin constructor
     function Plugin(element, options) {
         this.form = element;
@@ -21,6 +50,7 @@
         this.settings = $.extend({}, defaults, options);
         this._defaults = defaults;
         this._name = validateNicely;
+        this.validator = new Validator(this);
         this.init();
     }
 
@@ -32,30 +62,25 @@
             }
         },
         init: function () {
-            this.disableSubmitButtons();
-            this.addRemoveErrorsOnRequiredElements();
-            // TODO send if not errors are found
+            this.initSubmitButtons();
+            this.addOrRemoveInputErrors();
         },
-        disableSubmitButtons: function () {
-            var form = this.form, required = this.requiredFields, that = this;
+        initSubmitButtons: function () {
+            var form = this.form, required = this.requiredFields, pluginObj = this;
             $(form).on("click", this.submitButtons, bindSubmitClick);
 
             function bindSubmitClick() {
                 $(form).find(required).trigger("blur");
-                that.sendForm();
+                pluginObj.sendForm();
                 return false;
             }
         },
-        addRemoveErrorsOnRequiredElements: function () {
+        addOrRemoveInputErrors: function () {
+            var pluginObj = this;
             $(this.form).on("blur keyup", this.requiredFields, addOrRemoveErrorClass);
-            var errorClass = this.settings.errorClass;
-
+            // Call all events here
             function addOrRemoveErrorClass(e) {
-                var element = $(e.target);
-                if (Plugin.prototype.utils.isEmpty(element))
-                    element.addClass(errorClass);
-                else
-                    element.removeClass(errorClass);
+                pluginObj.validator.validateEmpty( $(e.target) );
             }
         },
         sendForm: function () {
