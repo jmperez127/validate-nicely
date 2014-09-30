@@ -82,7 +82,7 @@ The basic structure of the project is given in the following way:
 
 #### [demo/](https://github.com/theil/validate-nicely/tree/master/demo)
 
-Contains a simple HTML file to demonstrate your plugin.
+Contains a simple HTML file to demonstrate the plugin.
 
 #### [dist/](https://github.com/theil/validate-nicely/tree/master/dist)
 
@@ -92,11 +92,9 @@ This is where the generated files are stored once Grunt runs.
 
 Contains the files responsible for the plugin
 
-
 #### [spec/](https://github.com/theil/validate-nicely/tree/master/spec)
 
 Contains jasmine spec files, fixtures and karma dependencies.
-
 
 #### [fixtures/](https://github.com/theil/validate-nicely/tree/master/spec/fixture)
 
