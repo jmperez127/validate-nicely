@@ -1,8 +1,8 @@
 # Validate Nicely
 
-### Yet another simple jQuery form validator plugin
+### Yet another jQuery form validator
 
-So you need to integrate quickly a contact form, but native validation is ugly. You don't want to use some complex programming logic to do such a simple task. Then this plugin might be the right for you.
+So you need to integrate quickly a contact form, but native html5 validation doesn't do the trick for you. You don't want to spend a lot of time to do such a simple task. Then this plugin might be what you're looking for.
 
 ## Usage
 
@@ -21,9 +21,9 @@ So you need to integrate quickly a contact form, but native validation is ugly. 
 
 
 	```html
-		<form action="" method="" id="validate">
+		<form action="send.php" method="POST" id="validate">
 			<span data-label-for="my-field"></span>
-			<input type="text" data-required data-message="This can't be empty" id="my-field">
+			<input type="text" data-required data-message="This field is required" id="my-field">
 			<button type="submit">submit</button>
 		</form>
 	```
@@ -38,10 +38,13 @@ So you need to integrate quickly a contact form, but native validation is ugly. 
 	```javascript
 	$("#validate").validateNicely({
 		showLabel: true,
-		showPlaceholderMsg: false,
-		inputErrorColor: #f44949,
-		inputErrorClass: "invalid",
-		labelErrorClass: "invalid-span"
+		errorClass: "error",
+            	errorMessages: {
+        		required: "This field is required",
+                	email: "The email is not valid",
+                	numeric: "Wrong numeric format"
+            	},
+            	validationType: "inline" //inline, label, alert
 		...
 	});
 	```
@@ -77,69 +80,69 @@ The basic structure of the project is given in the following way:
 └── package.json
 ```
 
-#### [demo/](https://[REPO]/tree/master/demo)
+#### [demo/](https://github.com/theil/validate-nicely/tree/master/demo)
 
 Contains a simple HTML file to demonstrate your plugin.
 
-#### [dist/](https://[REPO]/tree/master/dist)
+#### [dist/](https://github.com/theil/validate-nicely/tree/master/dist)
 
 This is where the generated files are stored once Grunt runs.
 
-#### [src/](https://[REPO]/tree/master/src)
+#### [src/](https://github.com/theil/validate-nicely/tree/master/src)
 
 Contains the files responsible for the plugin
 
 
-#### [spec/](https://[REPO]/tree/master/spec)
+#### [spec/](https://github.com/theil/validate-nicely/tree/master/spec)
 
 Contains jasmine spec files, fixtures and karma dependencies.
 
 
-#### [fixtures/](https://[REPO]/tree/master/spec/fixture)
+#### [fixtures/](https://github.com/theil/validate-nicely/tree/master/spec/fixture)
 
 Fixtures for DOM testing with jasmine and jQuery
 
-#### [karma-dependencies/](https://[REPO]/tree/master/spec/karma-dependencies)
+#### [karma-dependencies/](https://github.com/theil/validate-nicely/tree/master/spec/karma-dependencies)
 
 Additional lib files used by karma such as jQuery and jasmine-jquery
 
-#### [.editorconfig](https://[REPO]/tree/master/.editorconfig)
+#### [.editorconfig](https://github.com/theil/validate-nicely/tree/master/.editorconfig)
 
 This file is for unifying the coding style for different editors and IDEs.
 
 > Check [editorconfig.org](http://editorconfig.org) if you haven't heard about this project yet.
 
-#### [.gitignore](https://[REPO]/tree/master/.gitignore)
+#### [.gitignore](https://github.com/theil/validate-nicely/tree/master/.gitignore)
 
 List of files that we don't want Git to track.
 
 > Check this [Git Ignoring Files Guide](https://help.github.com/articles/ignoring-files) for more details.
 
-#### [.jshintrc](https://[REPO]/tree/master/.jshintrc)
+#### [.jshintrc](https://github.com/theil/validate-nicely/tree/master/.jshintrc)
 
 List of rules used by JSHint to detect errors and potential problems in JavaScript.
 
 > Check [jshint.com](http://jshint.com/about/) if you haven't heard about this project yet.
 
-#### [.travis.yml](https://[REPO]/tree/master/.travis.yml)
+#### [.travis.yml](https://github.com/theil/validate-nicely/tree/master/.travis.yml)
 
 Definitions for continous integration using Travis.
 
 > Check [travis-ci.org](http://about.travis-ci.org/) if you haven't heard about this project yet.
 
-#### [validate-nicely.jquery.json](https://[REPO]/tree/master/validate-nicely.jquery.json)
+#### [validate-nicely.jquery.json](https://github.com/theil/validate-nicely/tree/master/validate-nicely.jquery.json)
 
 Package manifest file used to publish plugins in jQuery Plugin Registry.
 
 > Check this [Package Manifest Guide](http://plugins.jquery.com/docs/package-manifest/) for more details.
 
-#### [Gruntfile.js](https://[REPO]/tree/master/Gruntfile.js)
+#### [Gruntfile.js](https://github.com/theil/validate-nicely/tree/master/Gruntfile.js)
 
 Contains all automated tasks using Grunt.
 
 > Check [gruntjs.com](http://gruntjs.com) if you haven't heard about this project yet.
 
-#### [package.json]([REPO]/tree/master/package.json)
+#### [package.json](https://github.com/theil/validate-nicely/tree/master/package.json)
 
 Specify all dependencies loaded via Node.JS.
 
@@ -153,11 +156,11 @@ This is a simple tool created for a friend, and I tought someone might also want
 
 ## Contributing
 
-Check [CONTRIBUTING.md](https://[REPO]/master/CONTRIBUTING.md) for more information.
+Check [CONTRIBUTING.md](https://github.com/theil/validate-nicely/master/CONTRIBUTING.md) for more information.
 
 ## History
 
-Check [Releases](https://[REPO]/releases) for detailed changelog.
+Check [Releases](https://github.com/theil/validate-nicely/releases) for detailed changelog.
 
 ## License
 
