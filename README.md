@@ -63,11 +63,12 @@ The basic structure of the project is given in the following way:
 ├── src/
 │   └── jquery.validate-nicely.js
 ├── spec/
-│	├── fixtures/
-│	│	└── form.html
-│	├── karma-dependencies/
-│	│	├── jasmine-jquery.js
-│	│	└── jquery-2.1.1.min.js
+│   │	├── fixtures/
+│   │	│	└── form.html
+│   │	├── karma-dependencies/
+│   │	│	├── jasmine-jquery.js
+│   │	│	└── jquery-2.1.1.min.js
+│   │
 │   └── jquery.validate-nicely.js
 │
 ├── .editorconfig
