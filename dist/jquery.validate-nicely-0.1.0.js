@@ -35,7 +35,7 @@
         },
         init: function () {
             this.disableSubmitButtons();
-            this.addRemoveErrorsOnRequiredElements();
+            this.addOrRemoveInputErrors();
 
         },
         disableSubmitButtons: function () {
@@ -44,7 +44,7 @@
                 return false;
             }
         },
-        addRemoveErrorsOnRequiredElements: function () {
+        addOrRemoveInputErrors: function () {
             this.requiredFields.bind("blur", addOrRemoveErrorClass);
             var errorClass = this.settings.errorClass;
 

@@ -86,8 +86,8 @@
         sendForm: function () {
             var errorClass = "." + this.settings.errorClass;
             if ($(this.form).find(errorClass).length === 0) {
-                url = $(this.form).attr("action");
-                $.post(url, {}, function () {
+                var url = $(this.form).attr("action"), data = $(this.form).serializeObject();
+                $.post(url, data, function () {
                 });
             }
         }
@@ -113,6 +113,22 @@
         };
 
         return this;
+    };
+
+    $.fn.serializeObject = function(){
+        var object = {}, arrayOfDataObjects = this.serializeArray();
+
+        $.each(arrayOfDataObjects, function() {
+            if (object[this.name]) {
+                if (!object[this.name].push)
+                    object[this.name] = [object[this.name]];
+
+                object[this.name].push(this.value || '');
+            } else {
+                object[this.name] = this.value || '';
+            }
+        });
+        return object;
     };
 
 })(jQuery, window, document);

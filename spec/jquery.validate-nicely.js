@@ -51,7 +51,6 @@ describe("The plugin", function () {
     });
 
     it('sends the form via ajax', function(){
-
         spyOn($, "post").and.callThrough();
         triggerInputError();
         $("#my-form *[data-submit]").trigger("click");
@@ -60,16 +59,23 @@ describe("The plugin", function () {
         $("#my-form *[data-submit]").trigger("click");
         expect($.post).toHaveBeenCalled();
         expect($.post.calls.mostRecent().args[0]).toEqual($("#my-form").attr("action"));
-    })
+        var data = {};
+        $("#my-form *[name]").each(function(){
+            data[$(this).attr("name")] = $(this).val();
+        });
+
+        expect($.post.calls.mostRecent().args[1]).toEqual(data);
+
+    });
 
     function triggerInputError() {
-        $("*[data-required]").val("   ");
-        $("*[data-required]").trigger("click");
-        $("*[data-required]").trigger("blur");
+        $("#my-form *[data-required]").val("   ");
+        $("#my-form *[data-required]").trigger("click");
+        $("#my-form *[data-required]").trigger("blur");
     }
     function triggerInputSuccess() {
-        $("*[data-required]").val("Filled");
-        $("*[data-required]").trigger("click");
-        $("*[data-required]").trigger("blur");
+        $("#my-form *[data-required]").val("Filled");
+        $("#my-form *[data-required]").trigger("click");
+        $("#my-form *[data-required]").trigger("blur");
     }
 });
